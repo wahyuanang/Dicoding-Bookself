@@ -1,0 +1,62 @@
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* button click start */
+.button-click button:hover {
+  background-color: #fff;
+  color: black;
+}
+.button-click button {
+  background-color: #3081d0;
+  font-weight: bold;
+  color: #fff;
+}
+/* button click end */
+
+
+/* button close edit start*/
+.button-close{
+  background-color: red;
+  color: #fff;
+}
+.button-close:hover{
+  background-color: #3081d0;
+  color: #fff;
+}
+/* button close edit end*/
+
+/* button close Save start*/
+.button-save {
+  background-color: #40B93C;
+  color: #fff;
+}
+.button-save:hover{
+  background-color: #3081d0;
+  color: #fff;
+}
+/* button close Save end*/
+
+.bookshelf {
+  max-height: 78vh;
+  overflow-y: auto;
+  margin-right: 7px;
+}
+
+.bookshelf::-webkit-scrollbar {
+  width: 12px;
+}
+
+.bookshelf::-webkit-scrollbar-track {
+  background: none;
+}
+
+.bookshelf::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 8px;
+}
+
+.bookshelf::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bookshelf App</title>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="Assets/Css/style.css">
+</head>
+
+<body>
+    <header>
+        <!-- navbar start -->
+        <nav class="navbar-dark mb-3" style="background-color: #3081D0;">
+            <div class="container p-2">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa-solid fa-book-open fs-3" style="color: #fff;"></i>
+                            <strong class="ms-2" style="color: #fff; font-size: 23px;">Bookshelf</strong>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-7">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter the book tittle.."
+                                aria-label="Recipient's username" aria-describedby="button-addon2" id="inputSearch">
+                            <button class="btn btn-info" style="color: #fff" type="button" id="btn-search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+    </header>
+
+    <!-- Input book start -->
+    <div class="container-fluid">
+        <div class="row align-content-center">
+            <div class="col-md-4 text-white mb-lg-0 mb-2 pt-4">
+                <!-- <h4 class="text-black"></h4> -->
+                <div class="p-3 rounded" style="background-color: #7BD3EA;">
+                    <h4 class="text-center fw-bold">Input a New Book</h4>
+                    <form id="inputBook">
+                        <div class="mb-3">
+                            <label for="inputBookCategory" class="form-label"><strong>Book Category</strong></label>
+                            <input type="text" class="form-control" id="inputBookCategory" placeholder="Category"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputBookTitle" class="form-label"><strong>Tittle</strong></label>
+                            <input type="text" class="form-control" id="inputBookTitle" placeholder="Tittle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputBookWriter" class="form-label"><strong>Writer</strong></label>
+                            <input type="text" class="form-control" id="inputBookWriter" placeholder="Writer" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputBookYear" class="form-label"><strong>Year</strong></label>
+                            <input type="number" class="form-control" id="inputBookYear" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input border border-light"
+                                id="inputBookIsComplete">
+                            <label class="form-check-label fw-semibold" for="inputBookIsComplete">finished
+                                reading</label>
+                        </div>
+                        <div class="button-click d-grid gap-2">
+                            <button class="btn" type="submit">Masukkan Buku ke Dalam Rak</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Input book end-->
+
+            <!-- Buku belum dibaca start-->
+            <div class="col-md-4 mb-lg-0 mb-2 pt-4">
+                <div class="p-3 pe-1 pb-2 rounded text-light" style="background-color: #3081D0;">
+                    <h4 class="text-center fw-bold">Unfinished Reading</h4>
+                    <div class="bookshelf mb-2 pe-2" id="incompleteBookshelfList"></div>
+                </div>
+            </div>
+            <!-- Buku belum dibaca end-->
+
+            <!-- Buku sudah selesai dibaca start-->
+            <div class="col-md-4 mb-lg-0 mb-2 pt-4 completeBookshelfList">
+                <div class="p-3 pe-1 pb-2 rounded text-light" style="background-color: #3081D0;">
+                    <h4 class="text-center fw-bold">Finished Reading</h4>
+                    <div class="bookshelf mb-2 pe-2" id="completeBookshelfList"></div>
+                </div>
+            </div>
+            <!-- Buku sudah selesai dibaca end-->
+
+            <!-- Edit  book start-->
+            <div class="modal fade" id="editBook" tabindex="-1" aria-labelledby="editBookLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fa-solid fa-book-open fs-5 me-2" style="color: #3294cd;"></i>
+                            <h1 class="modal-title fs-5 fw-bold" id="editBookLabel" style="color: #3294cd;">Bookshelf
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-light" style="background-color: #3294cd;">
+                            <h4 class="text-center">Edit Buku</h4>
+                            <form id="editBookForm">
+                                <div class="mb-3">
+                                    <label for="inputEditBookCategory"
+                                        class="form-label"><strong>Category</strong></label>
+                                    <input type="text" class="form-control" id="inputEditBookCategory"
+                                        placeholder="Category" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputEditBookTitle" class="form-label"><strong>Tittle</strong></label>
+                                    <input type="text" class="form-control" id="inputEditBookTitle" placeholder="Judul"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputEditBookWriter" class="form-label"><strong>Writer</strong></label>
+                                    <input type="text" class="form-control" id="inputEditBookWriter"
+                                        placeholder="Penulis" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="inputEditBookYear" class="form-label"><strong>Year</strong></label>
+                                    <input type="number" class="form-control" id="inputEditBookYear" required>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer button-footer justify-content-start">
+                            <button type="button" class="btn button-close fw-semibold"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn button-save text-light fw-semibold" data-bs-dismiss="modal"
+                                id="btn-submit">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit  book end-->
+
+
+            <!-- Search book start-->
+            <div class="modal fade" id="searchBook" tabindex="-1" aria-labelledby="searchBookLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fa-solid fa-book-open fs-5 me-2" style="color: #3081d0;"></i>
+                            <h1 class="modal-title fs-5 fw-bold" id="searchBookLabel" style="color: #3081d0;">Bookshelf
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer justify-content-start">
+                            <button type="button" class="btn button-save" data-bs-dismiss="modal"><span
+                                    class="fw-semibold">OK</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Search book end-->
+
+
+            <script src="Assets/Js/main.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous"></script>
+
+            <!-- sweetalert2 -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
